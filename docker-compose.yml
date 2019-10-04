@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-    
+
     nginx:
         image: nginx:latest
         container_name: nginx
@@ -25,10 +25,8 @@ services:
         command: yarn start
         volumes:
             - ./ExcelPlay-2019/:/app
-            - /app/node_modules
         ports:
             - "3000:3000"
-
 
     auth1:
         build: ./excelplay-auth/excelplay_auth/.
@@ -40,8 +38,6 @@ services:
             - .:/excelplay/excelplay_auth
         ports:
             - "8000:8000"
-        environment:
-            - secret_key=$secret_key
         
     kryptos:
         build: ./excelplay-kryptos/excelplay_kryptos/.
@@ -54,9 +50,6 @@ services:
             - 'staticdata:/excelplay/excelplay_kryptos/excelplay-kryptos/excelplay_kryptos/static'
         ports:
             - "8001:8001"
-            
-        environment:
-            - secret_key=$secret_key
 
     dalalbull:
         build: ./excelplay-dalalbull/excelplay_dalalbull/.
@@ -142,16 +135,6 @@ services:
         volumes:
             - 'redisdata:/data'
 
- #   redis2:
- #       container_name: 'redis2'
- #       restart: always
- #       image: redis
- #       command: redis-server --port 6378
- #       volumes:
- #           - 'redisdata2:/data'
-
-
-
 volumes:
     pgdata2:
     pgdata:
@@ -159,5 +142,3 @@ volumes:
     redisdata:
     staticdata:
     pgdata4:
-#    redisdata2:
-
